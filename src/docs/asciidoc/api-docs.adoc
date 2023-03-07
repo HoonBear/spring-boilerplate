@@ -1,0 +1,89 @@
+= Boiler Plate Server API Docs
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 1
+:sectlinks:
+
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+
+= `Introduce`
+[[overview-http-verbs]]
+==== *Authorization*
+본 REST API는 #AuthAPI# 및 #문서# 를 제외한 모든 API Request Authorization 헤더에 +
+<<_일반로그인>>에서 제공하는 accessToken 을 포함합니다.
+|===
+| Key | Value
+
+| `Authorization`
+| <<_일반로그인>> accessToken
+|===
+
+==== *Method*
+본 REST API에서 사용하는 HTTP Method는 가능한한 표준 HTTP와 REST 규약을 따릅니다.
+|===
+| Method | Description
+
+| `GET`
+| 리소스를 가져올 때 사용
+
+| `POST`
+| 새 리소스를 만들 때 사용
+
+| `PUT`
+| 기존 리소스를 수정할 때 사용
+
+| `PATCH`
+| 기존 리소스의 일부를 수정할 때 사용
+
+| `DELETE`
+| 기존 리소스를 삭제할 떄 사용
+|===
+
+[[overview-http-status-codes]]
+==== *StatusCode*
+
+본 REST API에서 사용하는 HTTP StatusCode는 가능한 표준 HTTP와 REST 규약을 따름.
+
+|===
+| StatusCode | Description
+
+| `200 OK`
+| 요청을 성공적으로 처리함
+
+| `201 Created`
+| 새 리소스를 성공적으로 생성함.
+
+| `204 No Content`
+| 기존 리소스를 성공적으로 수정함.
+
+| `400 Bad Request`
+| 잘못된 요청을 보낸 경우. 응답 본문에 오류에 대한 정보가 담겨있음.
+
+| `404 Not Found`
+| 요청한 리소스가 없음.
+
+| `500 Internal Server Error`
+| 서버에서 `Error` 가 발생한 경우.
+
+| `503 Server Unavailable`
+| 서버가 동작하지 않는 경우.
+|===
+
+[[auth]]
+= `auth`
+[#_일반회원가입]
+==== *일반 회원가입*
+operation::authCommonSignup[snippets='curl-request,http-request,request-fields,http-response,response-fields']
+[#_일반로그인]
+==== *일반 로그인*
+operation::authCommonLogin[snippets='curl-request,http-request,request-fields,http-response,response-fields']
+
+[[member]]
+= `member`
+[#_단일회원정보]
+==== *단일 회원정보*
+operation::memberInfo[snippets='curl-request,http-request,request-headers,http-response,response-fields']
